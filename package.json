@@ -1,7 +1,25 @@
 {
-  "name": "monorepo-starter",
+  "name": "@monorepo-starter/root",
+  "author": {
+    "name": "@monorepo-starter Team",
+    "email": "team@monorepo-starter.com"
+  },
+  "type": "module",
+  "homepage": "https://xxx.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xxx/xxx.git",
+    "directory": "."
+  },
+  "description": "Monorepo Starter",
+  "keywords": [],
+  "bugs": {
+    "url": "https://issues.monorepo-starter.com"
+  },
   "private": true,
   "scripts": {
+    "preinstall": "npx only-allow pnpm && pnpm init:repo",
+    "init:repo": "npx tsx scripts/init-repo.ts",
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
@@ -11,10 +29,11 @@
   "devDependencies": {
     "prettier": "^3.6.2",
     "turbo": "^2.6.0",
-    "typescript": "5.9.2"
+    "typescript": "5.9.3",
+    "vite": "^7.2.2"
   },
   "packageManager": "pnpm@9.0.0",
   "engines": {
-    "node": ">=18"
+    "node": ">=24.0.0"
   }
 }

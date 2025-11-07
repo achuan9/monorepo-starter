@@ -4,3 +4,4 @@ packages:
   - 'packages/plugins/*'
   - 'packages/utils/*'
   - 'packages/configs/*'
+  - 'packages/internal/*'

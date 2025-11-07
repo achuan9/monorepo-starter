@@ -1,5 +1,15 @@
 {
-  "name": "@repo/eslint-config",
+  "name": "@monorepo-starter/eslint-config",
+  "author": {
+    "name": "@monorepo-starter Team",
+    "email": "team@monorepo-starter.com"
+  },
+  "homepage": "https://xxx.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xxx/xxx.git",
+    "directory": "packages/configs/eslint-config"
+  },
   "version": "0.0.0",
   "type": "module",
   "private": true,
@@ -20,5 +30,14 @@
     "globals": "^16.5.0",
     "typescript": "^5.9.2",
     "typescript-eslint": "^8.46.3"
+  },
+  "description": "@monorepo-starter ESLint Config",
+  "keywords": [],
+  "bugs": {
+    "url": "https://issues.monorepo-starter.com"
+  },
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=24.0.0"
   }
 }

@@ -1,8 +1,14 @@
 {
-  "extends": "@repo/typescript-config/react-library.json",
+  "extends": "../../tsconfig.json",
+  "include": ["src", "scripts/export-map.ts"],
+  "exclude": ["**/*.spec.cy.ts", "**/*.spec.cy.tsx"],
   "compilerOptions": {
-    "outDir": "dist"
-  },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist"]
+    "paths": {
+      "@/*": ["./src/*"],
+      "@test": ["./test/index.ts"]
+    },
+    "types": [],
+    "stripInternal": true,
+    "skipLibCheck": false
+  }
 }

@@ -1,0 +1,48 @@
+{
+  "name": "@monorepo-starter/storybook",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "storybook dev -p 6006",
+    "build": "storybook build"
+  },
+  "dependencies": {
+    "@monorepo-starter/ui": "workspace:*",
+    "@monorepo-starter/eslint-config": "workspace:*",
+    "@monorepo-starter/typescript-config": "workspace:*",
+    "vue": "^3.5.22"
+  },
+  "devDependencies": {
+    "@chromatic-com/storybook": "4.1.2",
+    "@storybook/addon-docs": "10.0.5",
+    "@storybook/addon-onboarding": "10.0.5",
+    "@storybook/vue3-vite": "10.0.5",
+    "@types/node": "^24.6.0",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "@vue/tsconfig": "^0.8.1",
+    "storybook": "10.0.5",
+    "typescript": "~5.9.3",
+    "vite": "^7.1.7",
+    "vue-tsc": "^3.1.0"
+  },
+  "author": {
+    "name": "@monorepo-starter Team",
+    "email": "team@monorepo-starter.com"
+  },
+  "homepage": "https://xxx.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xxx/xxx.git",
+    "directory": "apps/storybook"
+  },
+  "description": "Storybook for @monorepo-starter",
+  "keywords": [],
+  "bugs": {
+    "url": "https://issues.monorepo-starter.com"
+  },
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=24.0.0"
+  }
+}

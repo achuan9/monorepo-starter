@@ -1,9 +1,28 @@
 {
-  "name": "@repo/typescript-config",
+  "name": "@monorepo-starter/typescript-config",
+  "author": {
+    "name": "@monorepo-starter Team",
+    "email": "team@monorepo-starter.com"
+  },
+  "homepage": "https://xxx.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xxx/xxx.git",
+    "directory": "packages/configs/typescript-config"
+  },
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
   "publishConfig": {
     "access": "public"
+  },
+  "description": "@monorepo-starter TypeScript Config",
+  "keywords": [],
+  "bugs": {
+    "url": "https://issues.monorepo-starter.com"
+  },
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=24.0.0"
   }
 }
