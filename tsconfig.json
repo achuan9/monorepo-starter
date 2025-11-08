@@ -1,6 +1,3 @@
 {
-  "extends": "@monorepo-starter/typescript-config/base",
-  "compilerOptions": {
-    
-  }
+  "extends": "@monorepo-starter/typescript-config/node"
 }

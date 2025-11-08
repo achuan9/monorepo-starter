@@ -28,6 +28,7 @@
     "check-types": "turbo run check-types"
   },
   "devDependencies": {
+    "@types/node": "^24.10.0",
     "eslint": "^9.39.1",
     "prettier": "^3.6.2",
     "turbo": "^2.6.0",
@@ -39,9 +40,9 @@
     "node": ">=24.0.0"
   },
   "dependencies": {
-    "@monorepo-starter/ui": "workspace:*",
-    "@monorepo-starter/prettier-config": "workspace:*",
     "@monorepo-starter/eslint-config": "workspace:*",
-    "@monorepo-starter/typescript-config": "workspace:*"
+    "@monorepo-starter/prettier-config": "workspace:*",
+    "@monorepo-starter/typescript-config": "workspace:*",
+    "@monorepo-starter/ui": "workspace:*"
   }
 }

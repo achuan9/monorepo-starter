@@ -22,8 +22,14 @@
     "url": "https://issues.monorepo-starter.com"
   },
   "exports": {
-    "./base": "./src/base.json",
-    "./vue": "./src/vue.json"
+    "./vue": "./src/vue.json",
+    "./node": "./src/node.json"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0"
+  },
+  "peerDependencies": {
+    "@types/node": "^24.0.0"
   },
   "packageManager": "pnpm@9.0.0",
   "engines": {

@@ -1,7 +1,6 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
+  "extends": [
+    "@monorepo-starter/typescript-config/vue",
+    "@monorepo-starter/typescript-config/node"
   ]
 }

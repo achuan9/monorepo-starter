@@ -3,9 +3,9 @@ import type { Meta, StoryObj } from "@storybook/vue3-vite"
 // import VvButton from './button.vue';
 import { VvButton } from "@monorepo-starter/ui"
 
-const meta = {
+const meta: Meta<typeof VvButton> = {
   component: VvButton
-} satisfies Meta<typeof VvButton>
+}
 
 //👇 This default export determines where your story goes in the story list
 export default meta
@@ -16,7 +16,7 @@ type Story = StoryObj<typeof meta>
  * See https://storybook.js.org/docs/api/csf
  * to learn how to use render functions.
  */
-export const Primary = {
+export const Primary: StoryObj<typeof VvButton> = {
   render: (args: Story["args"]) => ({
     components: { VvButton },
     setup() {
@@ -29,4 +29,4 @@ export const Primary = {
     size: "medium",
     disabled: false
   }
-} satisfies Story
+}

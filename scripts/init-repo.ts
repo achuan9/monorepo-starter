@@ -2,7 +2,7 @@ import {
   PACKAGES_CONFIG,
   APPS_CONFIG,
   REPO_CONFIG,
-  PackageConfig,
+  type PackageConfig,
   APPS_DEPS
 } from "./constants"
 import fs from "node:fs"
