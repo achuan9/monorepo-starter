@@ -39,9 +39,9 @@
   "scripts": {
     "generate:exports": "npx tsx scripts/generate-exports.ts --watch-path scripts/export-map.ts",
     "watch": "pnpm build:lib --watch",
-    "dev": "pnpm generate:exports && vite build --watch",
+    "dev": "vite build --watch",
     "dev:typecheck": "vue-tsc --noEmit --skipLibCheck --project ./tsconfig.dev.json",
-    "build": "rimraf lib dist && pnpm generate:exports && pnpm build:lib && concurrently \"pnpm build:dist\" \"pnpm build:types:lib\" -n \"dist,types\" --kill-others-on-fail -gr && pnpm build:types:bundle",
+    "build": "rimraf lib dist && pnpm build:lib && concurrently \"pnpm build:dist\" \"pnpm build:types:lib\" -n \"dist,types\" --kill-others-on-fail -gr && pnpm build:types:bundle",
     "build:dist": "rollup --config build/rollup.config.js",
     "build:lib": "set NODE_ENV=lib && babel src --out-dir lib --source-maps --extensions \".ts\",\".tsx\",\".snap\" --copy-files --no-copy-ignored --out-file-extension .js",
     "build:types": "pnpm build:types:lib && pnpm build:types:bundle",

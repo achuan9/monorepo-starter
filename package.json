@@ -40,9 +40,9 @@
     "node": ">=24.0.0"
   },
   "dependencies": {
-    "@monorepo-starter/eslint-config": "workspace:*",
+    "@monorepo-starter/ui": "workspace:*",
     "@monorepo-starter/prettier-config": "workspace:*",
-    "@monorepo-starter/typescript-config": "workspace:*",
-    "@monorepo-starter/ui": "workspace:*"
+    "@monorepo-starter/eslint-config": "workspace:*",
+    "@monorepo-starter/typescript-config": "workspace:*"
   }
 }

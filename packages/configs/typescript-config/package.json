@@ -26,10 +26,12 @@
     "./node": "./src/node.json"
   },
   "devDependencies": {
-    "@types/node": "^24.0.0"
+    "@types/node": "^24.0.0",
+    "@vue/tsconfig": "^0.8.1"
   },
   "peerDependencies": {
-    "@types/node": "^24.0.0"
+    "@types/node": "^24.0.0",
+    "@vue/tsconfig": "^0.8.0"
   },
   "packageManager": "pnpm@9.0.0",
   "engines": {
