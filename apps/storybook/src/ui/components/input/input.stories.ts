@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from '@storybook/vue3-vite';
+import type { Meta, StoryObj } from "@storybook/vue3-vite"
 
 // import VvButton from './button.vue';
-import { VvInput } from '@monorepo-starter/ui';
+import { VvInput } from "@monorepo-starter/ui"
 
 const meta = {
-  component: VvInput,
-} satisfies Meta<typeof VvInput>;
+  component: VvInput
+} satisfies Meta<typeof VvInput>
 
 //👇 This default export determines where your story goes in the story list
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 /*
  *👇 Render functions are a framework specific feature to allow you control on how the component renders.
@@ -17,16 +17,16 @@ type Story = StoryObj<typeof meta>;
  * to learn how to use render functions.
  */
 export const Primary = {
-  render: (args: Story['args']) => ({
+  render: (args: Story["args"]) => ({
     components: { VvInput },
     setup() {
-      return { args };
+      return { args }
     },
-    template: '<VvInput v-bind="args" />',
+    template: '<VvInput v-bind="args" />'
   }),
   args: {
-    size: 'medium',
+    size: "medium",
     disabled: false,
-    placeholder: "Input",
-  },
-} satisfies Story;
+    placeholder: "Input"
+  }
+} satisfies Story

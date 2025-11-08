@@ -1,6 +1,6 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["src", "scripts/export-map.ts"],
+  "include": ["src"],
   "exclude": ["**/*.spec.cy.ts", "**/*.spec.cy.tsx"],
   "compilerOptions": {
     "paths": {

@@ -21,6 +21,10 @@
   "bugs": {
     "url": "https://issues.monorepo-starter.com"
   },
+  "exports": {
+    "./base": "./src/base.json",
+    "./vue": "./src/vue.json"
+  },
   "packageManager": "pnpm@9.0.0",
   "engines": {
     "node": ">=24.0.0"

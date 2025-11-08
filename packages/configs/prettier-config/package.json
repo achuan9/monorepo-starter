@@ -1,0 +1,33 @@
+{
+  "name": "@monorepo-starter/prettier-config",
+  "version": "1.0.0",
+  "description": "@monorepo-starter Prettier Config",
+  "type": "module",
+  "main": "./src/index.js",
+  "exports": "./src/index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^3.6.2"
+  },
+  "peerDependencies": {
+    "prettier": "^3.6.2"
+  },
+  "keywords": [],
+  "author": {
+    "name": "@monorepo-starter Team",
+    "email": "team@monorepo-starter.com"
+  },
+  "homepage": "https://xxx.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xxx/xxx.git",
+    "directory": "packages/configs/prettier-config"
+  },
+  "bugs": {
+    "url": "https://issues.monorepo-starter.com"
+  },
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=24.0.0"
+  }
+}

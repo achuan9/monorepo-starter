@@ -1,135 +1,205 @@
-# Turborepo starter
+# Monorepo Starter
 
-This Turborepo starter is maintained by the Turborepo core team.
+A modern, production-ready monorepo template built with pnpm workspaces, Turborepo, and a comprehensive set of development tools.
 
-## Using this example
+## 🚀 Tech Stack
 
-Run the following command:
+- **Package Management**: [pnpm](https://pnpm.io/) with workspaces
+- **Build System**: [Turborepo](https://turbo.build/) for task orchestration
+- **Versioning & Publishing**: [Changesets](https://github.com/changesets/changesets)
+- **Build Tool**: [Vite](https://vitejs.dev/)
+- **Testing**: [Vitest](https://vitest.dev/)
+- **Code Quality**:
+  - [ESLint](https://eslint.org/) - Linting
+  - [Prettier](https://prettier.io/) - Code formatting
+  - [Commitlint](https://commitlint.js.org/) - Commit message linting
+  - [lint-staged](https://github.com/okonet/lint-staged) - Pre-commit hooks
 
-```sh
-npx create-turbo@latest
-```
-
-## What's inside?
-
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
+## 📁 Project Structure
 
 ```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
+monorepo-starter/
+├── apps/                    # Applications
+│   └── storybook/          # Component documentation and showcase
+├── packages/               # Shared packages
+│   ├── ui/                 # Core UI component library
+│   ├── configs/            # Shared configuration packages
+│   │   ├── eslint-config/
+│   │   └── typescript-config/
+│   ├── utils/              # Utility packages
+│   └── vite-plugins/       # Vite plugin packages
+├── scripts/                # Build and utility scripts
+│   ├── constants.ts        # Repository configuration
+│   └── init-repo.ts        # Repository initialization script
+├── package.json            # Root package.json
+├── pnpm-workspace.yaml     # pnpm workspace configuration
+├── turbo.json              # Turborepo configuration
+└── tsconfig.json           # Root TypeScript configuration
 ```
 
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+## 🏁 Quick Start
 
+### Prerequisites
+
+- Node.js >= 24.0.0
+- pnpm >= 9.0.0
+
+### Getting Started
+
+1. **Clone the template repository**
+
+   ```bash
+   git clone <your-repo-url>
+   cd monorepo-starter
+   ```
+
+2. **Configure the repository**
+
+   Edit `scripts/constants.ts` and update the following configuration:
+
+   ```typescript
+   export const REPO_CONFIG: RepoConfig = {
+     namespace: "@your-org", // Your organization namespace
+     author: {
+       name: "Your Name",
+       email: "your-email@example.com"
+     },
+     homepage: "https://your-website.com",
+     repository: "https://github.com/your-org/your-repo.git",
+     bugs: {
+       url: "https://github.com/your-org/your-repo/issues"
+     },
+     packageManager: "pnpm@9.0.0",
+     engines: {
+       node: ">=24.0.0"
+     }
+   }
+   ```
+
+3. **Plan your packages**
+
+   Organize your packages in the `packages/` directory according to your needs:
+   - `packages/ui/` - UI component library
+   - `packages/configs/` - Shared configuration packages
+   - `packages/utils/` - Utility function packages
+   - `packages/vite-plugins/` - Custom Vite plugins
+
+   Update `PACKAGES_CONFIG` and `APPS_CONFIG` in `scripts/constants.ts` to match your package structure.
+
+4. **Install dependencies**
+
+   ```bash
+   pnpm install
+   ```
+
+   This will automatically:
+   - Ensure only pnpm is used (via `only-allow`)
+   - Run the repository initialization script to update all package.json files
+
+5. **Start development**
+
+   ```bash
+   pnpm dev
+   ```
+
+## 📖 Template Usage Guide
+
+### Step 1: Configure Repository Settings
+
+The first thing you need to do after getting the template is to modify the configuration in `scripts/constants.ts`:
+
+- **`REPO_CONFIG`**: Update namespace, author, homepage, repository URL, and other repository-level settings
+- **`PACKAGES_CONFIG`**: Define your package structure and metadata
+- **`APPS_CONFIG`**: Configure your applications (like Storybook)
+
+### Step 2: Plan Your Packages
+
+Organize your packages in the `packages/` directory:
+
+- **UI Components**: Place your component library in `packages/ui/`
+- **Configurations**: Shared configs (ESLint, TypeScript, etc.) in `packages/configs/`
+- **Utilities**: Reusable utility functions in `packages/utils/`
+- **Plugins**: Custom Vite plugins in `packages/vite-plugins/`
+
+### Step 3: Install Dependencies
+
+Run `pnpm install` to:
+
+- Install all dependencies
+- Automatically initialize the repository (updates all package.json files based on your configuration)
+
+## 🛠️ Available Scripts
+
+### Root Level Scripts
+
+- `pnpm install` - Install dependencies and initialize repository
+- `pnpm build` - Build all packages and apps
+- `pnpm dev` - Start development servers for all apps
+- `pnpm lint` - Lint all packages
+- `pnpm format` - Format code with Prettier
+- `pnpm check-types` - Type-check all packages
+
+### Package-Level Scripts
+
+Each package can have its own scripts defined in its `package.json`. Common scripts include:
+
+- `dev` - Start development mode
+- `build` - Build the package
+- `test` - Run tests
+- `lint` - Lint the package
+
+## 🧪 Testing
+
+This template uses Vitest for testing. Write your tests alongside your code:
+
+```typescript
+// Example: packages/ui/src/components/button/__tests__/button.test.ts
+import { describe, it, expect } from "vitest"
+
+describe("Button", () => {
+  it("should render correctly", () => {
+    // Your test here
+  })
+})
 ```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
+## 📦 Versioning & Publishing
 
-### Develop
+This template uses Changesets for version management and publishing:
 
-To develop all apps and packages, run the following command:
+1. **Create a changeset**: `pnpm changeset`
+2. **Version packages**: `pnpm changeset version`
+3. **Publish packages**: `pnpm changeset publish`
 
-```
-cd my-turborepo
+## 🔧 Development Workflow
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
+1. **Create a new package**: Add it to `PACKAGES_CONFIG` in `scripts/constants.ts` and create the directory structure
+2. **Add dependencies**: Use `pnpm add <package>` in the specific package directory
+3. **Run tasks**: Use Turborepo to run tasks across packages: `pnpm turbo <task>`
+4. **Format code**: Run `pnpm format` before committing
+5. **Commit changes**: Follow conventional commits (enforced by Commitlint)
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
+## 📝 Code Style
 
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+- **ESLint**: Configured for consistent code quality
+- **Prettier**: Automatic code formatting
+- **Commitlint**: Enforces conventional commit messages
+- **lint-staged**: Runs linters on staged files before commit
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
+## 🤝 Contributing
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
+1. Create a feature branch
+2. Make your changes
+3. Ensure all tests pass and code is linted
+4. Commit using conventional commit format
+5. Create a pull request
 
-### Remote Caching
+## 📄 License
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+[Add your license here]
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+## 🔗 Links
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+- [Documentation](https://your-docs-url.com)
+- [Changelog](./CHANGELOG.md)
+- [Issues](https://github.com/your-org/your-repo/issues)
