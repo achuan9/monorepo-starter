@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@monorepo-starter/ui": "workspace:*",
+    "@monorepo-starter/hooks": "workspace:*",
     "@monorepo-starter/prettier-config": "workspace:*",
     "@monorepo-starter/eslint-config": "workspace:*",
     "@monorepo-starter/typescript-config": "workspace:*",

@@ -1,0 +1,66 @@
+{
+  "name": "@monorepo-starter/hooks",
+  "version": "1.0.0",
+  "description": "@monorepo-starter Hooks",
+  "type": "module",
+  "main": "dist/index.es.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/",
+    "CHANGELOG.md"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.es.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite build --watch",
+    "build": "rimraf dist && vite build",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "check-types": "tsc --noEmit"
+  },
+  "keywords": [],
+  "author": {
+    "name": "@monorepo-starter Team",
+    "email": "team@monorepo-starter.com"
+  },
+  "license": "MIT",
+  "homepage": "https://xxx.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xxx/xxx.git",
+    "directory": "packages/hooks"
+  },
+  "bugs": {
+    "url": "https://issues.monorepo-starter.com"
+  },
+  "devDependencies": {
+    "@monorepo-starter/eslint-config": "workspace:*",
+    "@monorepo-starter/typescript-config": "workspace:*",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "@vitest/coverage-istanbul": "^3.2.4",
+    "@vue/test-utils": "^2.4.6",
+    "jsdom": "^25.0.1",
+    "rimraf": "^6.0.1",
+    "vite-plugin-dts": "^4.5.4",
+    "vitest": "^3.2.4",
+    "vue": "^3.5.23"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=24.0.0"
+  }
+}

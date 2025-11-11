@@ -55,6 +55,14 @@ export const PACKAGES_CONFIG: PackageConfig[] = [
     }
   },
   {
+    packageName: "hooks",
+    packagePath: "packages/hooks",
+    packageJson: {
+      description: "@monorepo-starter Hooks",
+      keywords: []
+    }
+  },
+  {
     packageName: "prettier-config",
     packagePath: "packages/configs/prettier-config",
     packageJson: {
