@@ -9,7 +9,7 @@ const packageName = packageJson.name.replace(`${REPO_CONFIG.namespace}/`, "")
 
 export default defineConfig({
   build: {
-    outDir: "./lib",
+    outDir: "./dist",
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
       name: packageName,
