@@ -3,7 +3,7 @@ import { defineConfig } from "vite"
 import vue from "@vitejs/plugin-vue"
 import dts from "vite-plugin-dts"
 import packageJson from "./package.json" with { type: "json" }
-import { REPO_CONFIG } from "../../scripts/constants"
+import { REPO_CONFIG } from "../../meta/repo-config"
 
 const packageName = packageJson.name.replace(`${REPO_CONFIG.namespace}/`, "")
 
