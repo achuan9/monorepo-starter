@@ -14,6 +14,7 @@ A modern, production-ready monorepo template built with pnpm workspaces, Turbore
   - [Prettier](https://prettier.io/) - Code formatting
   - [Commitlint](https://commitlint.js.org/) - Commit message linting
   - [lint-staged](https://github.com/okonet/lint-staged) - Pre-commit hooks
+  - [cspell](https://cspell.org/) - Spell checking
 
 ## 📁 Project Structure
 
@@ -138,6 +139,9 @@ Run `pnpm install` to:
 - `pnpm lint` - Lint all packages
 - `pnpm format` - Format code with Prettier
 - `pnpm check-types` - Type-check all packages
+- `pnpm spellcheck` - Check spelling in code
+- `pnpm test` - Run tests across all packages
+- `pnpm clean` - Clean build artifacts
 
 ### Package-Level Scripts
 

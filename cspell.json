@@ -1,0 +1,78 @@
+{
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "commitlint",
+    "lintstaged",
+    "monorepo",
+    "prettier",
+    "storybook",
+    "typescript",
+    "vite",
+    "vitest",
+    "vue",
+    "pnpm",
+    "turborepo",
+    "changesets",
+    "husky",
+    "serviceworker",
+    "tsgo",
+    "esbenp"
+  ],
+  "ignoreWords": [],
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/build/**",
+    "**/.next/**",
+    "**/coverage/**",
+    "**/.turbo/**",
+    "**/pnpm-lock.yaml",
+    "**/package-lock.json",
+    "**/yarn.lock",
+    "**/*.min.js",
+    "**/*.min.css",
+    "**/CHANGELOG.md"
+  ],
+  "dictionaries": [
+    "typescript",
+    "node",
+    "npm",
+    "html",
+    "css",
+    "bash",
+    "fonts",
+    "filetypes",
+    "software-terms"
+  ],
+  "useGitignore": true,
+  "enabledLanguageIds": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "vue",
+    "markdown",
+    "json",
+    "jsonc",
+    "yaml",
+    "yml",
+    "html",
+    "css",
+    "scss",
+    "less"
+  ],
+  "flagWords": [],
+  "overrides": [
+    {
+      "filename": "**/*.md",
+      "languageSettings": [
+        {
+          "languageId": "markdown",
+          "locale": "en"
+        }
+      ]
+    }
+  ]
+}

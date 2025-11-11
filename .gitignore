@@ -25,7 +25,18 @@ coverage
 .next/
 out/
 dist
+lib/
+*.tsbuildinfo
 
+# Husky
+.husky/_
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 
 # Debug
 npm-debug.log*
