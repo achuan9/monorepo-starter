@@ -21,6 +21,8 @@
 monorepo-starter/
 ├── apps/                    # 应用程序
 │   └── storybook/          # 组件文档和展示
+├── meta/                   # 源信息
+│   └── repo-config.ts      # 仓库配置
 ├── packages/               # 共享包
 │   ├── ui/                 # 核心 UI 组件库
 │   ├── configs/            # 共享配置包

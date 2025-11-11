@@ -22,6 +22,8 @@ A modern, production-ready monorepo template built with pnpm workspaces, Turbore
 monorepo-starter/
 ├── apps/                    # Applications
 │   └── storybook/          # Component documentation and showcase
+├── meta/                   # Meta
+│   └── repo-config.ts      # Repo config
 ├── packages/               # Shared packages
 │   ├── ui/                 # Core UI component library
 │   ├── configs/            # Shared configuration packages

@@ -4,7 +4,7 @@ import {
   REPO_CONFIG,
   type PackageConfig,
   APPS_DEPS
-} from "./constants"
+} from "../meta/repo-config"
 import fs from "node:fs"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
