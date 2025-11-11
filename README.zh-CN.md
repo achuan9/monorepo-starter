@@ -31,7 +31,6 @@ monorepo-starter/
 │   ├── utils/              # 工具函数包
 │   └── vite-plugins/       # Vite 插件包
 ├── scripts/                # 构建和工具脚本
-│   ├── constants.ts        # 仓库配置
 │   └── init-repo.ts        # 仓库初始化脚本
 ├── package.json            # 根 package.json
 ├── pnpm-workspace.yaml     # pnpm workspace 配置
@@ -57,7 +56,7 @@ monorepo-starter/
 
 2. **配置仓库信息**
 
-   编辑 `scripts/constants.ts` 并更新以下配置：
+   编辑 `meta/repo-config.ts` 并更新以下配置：
 
    ```typescript
    export const REPO_CONFIG: RepoConfig = {
@@ -86,7 +85,7 @@ monorepo-starter/
    - `packages/utils/` - 工具函数包
    - `packages/vite-plugins/` - 自定义 Vite 插件
 
-   更新 `scripts/constants.ts` 中的 `PACKAGES_CONFIG` 和 `APPS_CONFIG` 以匹配你的包结构。
+   更新 `meta/repo-config.ts` 中的 `PACKAGES_CONFIG` 和 `APPS_CONFIG` 以匹配你的包结构。
 
 4. **安装依赖**
 
@@ -108,7 +107,7 @@ monorepo-starter/
 
 ### 步骤 1: 配置仓库设置
 
-拿到模板后，首先需要修改 `scripts/constants.ts` 中的配置：
+拿到模板后，首先需要修改 `meta/repo-config.ts` 中的配置：
 
 - **`REPO_CONFIG`**: 更新命名空间、作者、主页、仓库 URL 等仓库级别的设置
 - **`PACKAGES_CONFIG`**: 定义你的包结构和元数据
@@ -138,8 +137,11 @@ monorepo-starter/
 - `pnpm build` - 构建所有包和应用
 - `pnpm dev` - 启动所有应用的开发服务器
 - `pnpm lint` - 检查所有包的代码
+- `pnpm lint:fix` - 检查并自动修复所有包的代码问题
 - `pnpm format` - 使用 Prettier 格式化代码
 - `pnpm check-types` - 类型检查所有包
+- `pnpm spellcheck` - 检查代码中的拼写
+- `pnpm spellcheck:fix` - 修复代码中的拼写问题
 
 ### 包级别脚本
 
@@ -175,7 +177,7 @@ describe("Button", () => {
 
 ## 🔧 开发工作流
 
-1. **创建新包**: 在 `scripts/constants.ts` 的 `PACKAGES_CONFIG` 中添加，并创建目录结构
+1. **创建新包**: 在 `meta/repo-config.ts` 的 `PACKAGES_CONFIG` 中添加，并创建目录结构
 2. **添加依赖**: 在特定包目录中使用 `pnpm add <package>`
 3. **运行任务**: 使用 Turborepo 跨包运行任务: `pnpm turbo <task>`
 4. **格式化代码**: 提交前运行 `pnpm format`

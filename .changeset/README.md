@@ -1,39 +1,39 @@
-# Changesets 最佳实践指南
+# Changesets Best Practices Guide
 
-## 📋 目录
+## 📋 Table of Contents
 
-1. [核心工作流程](#核心工作流程)
-2. [配合工具](#配合工具)
-3. [CI/CD 集成](#cicd-集成)
-4. [团队协作规范](#团队协作规范)
-5. [常见问题](#常见问题)
+1. [Core Workflow](#core-workflow)
+2. [Supporting Tools](#supporting-tools)
+3. [CI/CD Integration](#cicd-integration)
+4. [Team Collaboration Guidelines](#team-collaboration-guidelines)
+5. [FAQ](#faq)
 
-## 🔄 核心工作流程
+## 🔄 Core Workflow
 
-### 标准开发流程
+### Standard Development Process
 
-1. **开发功能/修复 Bug**
+1. **Develop Feature/Fix Bug**
 
    ```bash
-   # 创建功能分支
+   # Create feature branch
    git checkout -b feat/add-button-component
 
-   # 开发代码...
+   # Develop code...
    ```
 
-2. **创建 Changeset**
+2. **Create Changeset**
 
    ```bash
-   # 在完成功能后，运行 changeset 命令
+   # After completing the feature, run changeset command
    pnpm changeset
 
-   # 交互式选择：
-   # - 选择要更新的包
-   # - 选择版本类型（major/minor/patch）
-   # - 编写变更描述
+   # Interactive selection:
+   # - Select packages to update
+   # - Choose version type (major/minor/patch)
+   # - Write change description
    ```
 
-3. **提交代码**
+3. **Commit Code**
 
    ```bash
    git add .
@@ -41,39 +41,39 @@
    git push
    ```
 
-4. **创建 PR**
-   - Changeset 文件会随 PR 一起提交
-   - 团队成员审查代码和 changeset
+4. **Create PR**
+   - Changeset file will be submitted with PR
+   - Team members review code and changeset
 
-5. **合并 PR**
-   - 合并到 main 分支后，changeset 文件会被保留
+5. **Merge PR**
+   - After merging to main branch, changeset file will be retained
 
-6. **发布流程（通常在 CI 中自动执行）**
+6. **Release Process (usually executed automatically in CI)**
 
    ```bash
-   # 1. 更新版本号和生成 CHANGELOG
+   # 1. Update version numbers and generate CHANGELOG
    pnpm changeset:version
 
-   # 2. 构建包
+   # 2. Build packages
    pnpm build
 
-   # 3. 发布到 npm
+   # 3. Publish to npm
    pnpm changeset:publish
    ```
 
-## 🛠️ 配合工具
+## 🛠️ Supporting Tools
 
-### 1. Commitlint - 提交信息规范
+### 1. Commitlint - Commit Message Standards
 
-**作用**：确保提交信息遵循 Conventional Commits 规范，便于自动生成 CHANGELOG。
+**Purpose**: Ensure commit messages follow Conventional Commits specification for automatic CHANGELOG generation.
 
-**安装**：
+**Installation**:
 
 ```bash
 pnpm add -D -w @commitlint/cli @commitlint/config-conventional
 ```
 
-**配置**：创建 `commitlint.config.js`
+**Configuration**: Create `commitlint.config.js`
 
 ```js
 export default {
@@ -83,80 +83,92 @@ export default {
       2,
       "always",
       [
-        "feat", // 新功能
-        "fix", // 修复 bug
-        "docs", // 文档变更
-        "style", // 代码格式（不影响代码运行）
-        "refactor", // 重构
-        "perf", // 性能优化
-        "test", // 测试相关
-        "chore", // 构建/工具变动
-        "revert" // 回滚
+        "feat", // New feature
+        "fix", // Bug fix
+        "docs", // Documentation changes
+        "style", // Code style (doesn't affect code execution)
+        "refactor", // Refactoring
+        "perf", // Performance optimization
+        "test", // Test related
+        "chore", // Build/tool changes
+        "revert" // Revert
       ]
     ]
   }
 }
 ```
 
-### 2. Husky - Git Hooks 管理
+### 2. Husky - Git Hooks Management
 
-**作用**：在提交前自动运行 lint 和 commitlint 检查。
+**Purpose**: Automatically run lint and commitlint checks before commit.
 
-**安装**：
+**Installation**:
 
 ```bash
 pnpm add -D -w husky
-pnpm exec husky init
+pnpm exec husky install
 ```
 
-**配置**：`.husky/commit-msg`
+**Note**: Add `prepare` script in `package.json` for automatic initialization:
+
+```json
+{
+  "scripts": {
+    "prepare": "husky install"
+  }
+}
+```
+
+**Configuration**: `.husky/commit-msg`
 
 ```bash
-#!/usr/bin/env sh
 pnpm exec commitlint --edit $1
 ```
 
-**配置**：`.husky/pre-commit`
+**Configuration**: `.husky/pre-commit`
 
 ```bash
-#!/usr/bin/env sh
 pnpm exec lint-staged
 ```
 
-### 3. lint-staged - 暂存文件检查
+**Note**: Husky v9.1.1+ no longer requires `#!/usr/bin/env sh` and `husky.sh` reference. Write commands directly.
 
-**作用**：只对暂存的文件运行 lint 和格式化，提高效率。
+### 3. lint-staged - Staged Files Check
 
-**安装**：
+**Purpose**: Run lint and formatting only on staged files for better efficiency.
+
+**Installation**:
 
 ```bash
 pnpm add -D -w lint-staged
 ```
 
-**配置**：在 `package.json` 中添加
+**Configuration**: Create `.lintstagedrc.js` file
 
-```json
-{
-  "lint-staged": {
-    "*.{js,ts,tsx,vue}": ["eslint --fix", "prettier --write"],
-    "*.{json,md}": ["prettier --write"]
-  }
+```js
+export default {
+  "*.{js,ts,tsx,vue}": [
+    "eslint --fix",
+    "prettier --write",
+    "cspell --no-must-find-files"
+  ],
+  "*.{json,md,mdx}": ["prettier --write", "cspell --no-must-find-files"]
 }
 ```
 
 ### 4. Changeset Bot (GitHub App)
 
-**作用**：自动检查 PR 中是否包含 changeset，如果没有会提醒。
+**Purpose**: Automatically check if PR contains changeset, and remind if not.
 
-**安装**：在 GitHub 上安装 [Changesets Bot](https://github.com/apps/changeset-bot)
+**Installation**: Install [Changesets Bot](https://github.com/apps/changeset-bot) on GitHub
 
-**配置**：在 `.github/changeset-bot.yml` 中配置（可选）
+**Configuration**: Configure in `.github/changeset-bot.yml` (optional)
 
-## 🚀 CI/CD 集成
+## 🚀 CI/CD Integration
 
-### GitHub Actions 工作流
+### GitHub Actions Workflow
 
-创建 `.github/workflows/release.yml`：
+Create `.github/workflows/release.yml`:
 
 ```yaml
 name: Release
@@ -215,26 +227,26 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 ```
 
-### 工作流程说明
+### Workflow Explanation
 
-1. **PR 阶段**：
-   - Changeset Bot 检查 PR 是否包含 changeset
-   - 如果没有，会在 PR 中评论提醒
+1. **PR Phase**:
+   - Changeset Bot checks if PR contains changeset
+   - If not, it will comment in PR to remind
 
-2. **合并到 main 后**：
-   - CI 检测到 changeset 文件
-   - 自动创建 "Version Packages" PR
-   - 更新版本号和 CHANGELOG
+2. **After Merging to Main**:
+   - CI detects changeset files
+   - Automatically creates "Version Packages" PR
+   - Updates version numbers and CHANGELOG
 
-3. **合并 Version Packages PR 后**：
-   - 自动发布到 npm
-   - 创建 Git Tag
+3. **After Merging Version Packages PR**:
+   - Automatically publishes to npm
+   - Creates Git Tag
 
-## 👥 团队协作规范
+## 👥 Team Collaboration Guidelines
 
-### 1. Changeset 编写规范
+### 1. Changeset Writing Standards
 
-**好的 Changeset**：
+**Good Changeset**:
 
 ```markdown
 ---
@@ -244,7 +256,7 @@ jobs:
 Add Button component with variants (primary, secondary, outline)
 ```
 
-**不好的 Changeset**：
+**Bad Changeset**:
 
 ```markdown
 ---
@@ -254,26 +266,26 @@ Add Button component with variants (primary, secondary, outline)
 fix bug
 ```
 
-### 2. 版本类型选择指南
+### 2. Version Type Selection Guide
 
-- **Major (1.0.0 → 2.0.0)**：
-  - 破坏性变更（Breaking Changes）
-  - API 重大变更
-  - 移除功能
+- **Major (1.0.0 → 2.0.0)**:
+  - Breaking changes
+  - Major API changes
+  - Feature removal
 
-- **Minor (1.0.0 → 1.1.0)**：
-  - 新功能（向后兼容）
-  - 新增 API
-  - 功能增强
+- **Minor (1.0.0 → 1.1.0)**:
+  - New features (backward compatible)
+  - New APIs
+  - Feature enhancements
 
-- **Patch (1.0.0 → 1.0.1)**：
-  - Bug 修复
-  - 性能优化
-  - 文档更新
+- **Patch (1.0.0 → 1.0.1)**:
+  - Bug fixes
+  - Performance optimizations
+  - Documentation updates
 
-### 3. 多包协同更新
+### 3. Multi-Package Coordinated Updates
 
-如果多个包需要同时更新版本（如 UI 组件库和依赖它的包），使用 `linked` 配置：
+If multiple packages need to update versions simultaneously (e.g., UI component library and packages that depend on it), use `linked` configuration:
 
 ```json
 {
@@ -281,9 +293,9 @@ fix bug
 }
 ```
 
-### 4. 固定版本发布
+### 4. Fixed Version Publishing
 
-如果某些包需要同时发布相同版本，使用 `fixed` 配置：
+If certain packages need to be published with the same version, use `fixed` configuration:
 
 ```json
 {
@@ -291,34 +303,34 @@ fix bug
 }
 ```
 
-## ❓ 常见问题
+## ❓ FAQ
 
-### Q: 什么时候创建 changeset？
+### Q: When should I create a changeset?
 
-A: 在完成一个功能或修复后，提交 PR 之前创建。每个 PR 应该至少包含一个 changeset。
+A: After completing a feature or fix, before submitting PR. Each PR should contain at least one changeset.
 
-### Q: 如果忘记创建 changeset 怎么办？
+### Q: What if I forget to create a changeset?
 
-A: 可以在 PR 中直接添加 changeset 文件，或者合并后创建新的 PR 添加 changeset。
+A: You can add a changeset file directly in the PR, or create a new PR to add changeset after merging.
 
-### Q: 如何撤销一个 changeset？
+### Q: How to undo a changeset?
 
-A: 直接删除 `.changeset/` 目录下对应的 changeset 文件即可。
+A: Simply delete the corresponding changeset file in the `.changeset/` directory.
 
-### Q: 如何查看待发布的 changeset？
+### Q: How to view pending changesets?
 
-A: 运行 `pnpm changeset status` 查看当前所有待发布的 changeset。
+A: Run `pnpm changeset status` to view all pending changesets.
 
-### Q: 如何测试发布流程？
+### Q: How to test the release process?
 
-A: 使用 snapshot 模式：
+A: Use snapshot mode:
 
 ```bash
 pnpm changeset version --snapshot
 ```
 
-## 📚 参考资源
+## 📚 Reference Resources
 
-- [Changesets 官方文档](https://github.com/changesets/changesets)
+- [Changesets Official Documentation](https://github.com/changesets/changesets)
 - [Conventional Commits](https://www.conventionalcommits.org/)
 - [Changesets Action](https://github.com/changesets/action)

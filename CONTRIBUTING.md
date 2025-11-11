@@ -49,10 +49,12 @@ This project adheres to a Code of Conduct that all contributors are expected to 
 - `pnpm dev` - Start development servers
 - `pnpm build` - Build all packages
 - `pnpm lint` - Lint all packages
+- `pnpm lint:fix` - Lint and auto-fix issues
 - `pnpm test` - Run tests
 - `pnpm format` - Format code
 - `pnpm check-types` - Type-check all packages
 - `pnpm spellcheck` - Check spelling
+- `pnpm spellcheck:fix` - Fix spelling issues
 
 ### Making Changes
 

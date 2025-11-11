@@ -22,8 +22,8 @@ A modern, production-ready monorepo template built with pnpm workspaces, Turbore
 monorepo-starter/
 ├── apps/                    # Applications
 │   └── storybook/          # Component documentation and showcase
-├── meta/                   # Meta
-│   └── repo-config.ts      # Repo config
+├── meta/                   # Meta configuration
+│   └── repo-config.ts      # Repository configuration
 ├── packages/               # Shared packages
 │   ├── ui/                 # Core UI component library
 │   ├── configs/            # Shared configuration packages
@@ -32,7 +32,6 @@ monorepo-starter/
 │   ├── utils/              # Utility packages
 │   └── vite-plugins/       # Vite plugin packages
 ├── scripts/                # Build and utility scripts
-│   ├── constants.ts        # Repository configuration
 │   └── init-repo.ts        # Repository initialization script
 ├── package.json            # Root package.json
 ├── pnpm-workspace.yaml     # pnpm workspace configuration
@@ -58,7 +57,7 @@ monorepo-starter/
 
 2. **Configure the repository**
 
-   Edit `scripts/constants.ts` and update the following configuration:
+   Edit `meta/repo-config.ts` and update the following configuration:
 
    ```typescript
    export const REPO_CONFIG: RepoConfig = {
@@ -87,7 +86,7 @@ monorepo-starter/
    - `packages/utils/` - Utility function packages
    - `packages/vite-plugins/` - Custom Vite plugins
 
-   Update `PACKAGES_CONFIG` and `APPS_CONFIG` in `scripts/constants.ts` to match your package structure.
+   Update `PACKAGES_CONFIG` and `APPS_CONFIG` in `meta/repo-config.ts` to match your package structure.
 
 4. **Install dependencies**
 
@@ -109,7 +108,7 @@ monorepo-starter/
 
 ### Step 1: Configure Repository Settings
 
-The first thing you need to do after getting the template is to modify the configuration in `scripts/constants.ts`:
+The first thing you need to do after getting the template is to modify the configuration in `meta/repo-config.ts`:
 
 - **`REPO_CONFIG`**: Update namespace, author, homepage, repository URL, and other repository-level settings
 - **`PACKAGES_CONFIG`**: Define your package structure and metadata
@@ -139,9 +138,11 @@ Run `pnpm install` to:
 - `pnpm build` - Build all packages and apps
 - `pnpm dev` - Start development servers for all apps
 - `pnpm lint` - Lint all packages
+- `pnpm lint:fix` - Lint and auto-fix issues in all packages
 - `pnpm format` - Format code with Prettier
 - `pnpm check-types` - Type-check all packages
 - `pnpm spellcheck` - Check spelling in code
+- `pnpm spellcheck:fix` - Fix spelling issues in code
 - `pnpm test` - Run tests across all packages
 - `pnpm clean` - Clean build artifacts
 
@@ -179,7 +180,7 @@ This template uses Changesets for version management and publishing:
 
 ## 🔧 Development Workflow
 
-1. **Create a new package**: Add it to `PACKAGES_CONFIG` in `scripts/constants.ts` and create the directory structure
+1. **Create a new package**: Add it to `PACKAGES_CONFIG` in `meta/repo-config.ts` and create the directory structure
 2. **Add dependencies**: Use `pnpm add <package>` in the specific package directory
 3. **Run tasks**: Use Turborepo to run tasks across packages: `pnpm turbo <task>`
 4. **Format code**: Run `pnpm format` before committing

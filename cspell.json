@@ -5,6 +5,7 @@
   "words": [
     "commitlint",
     "lintstaged",
+    "lintstagedrc",
     "monorepo",
     "prettier",
     "storybook",
