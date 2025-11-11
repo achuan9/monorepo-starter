@@ -2,19 +2,22 @@
   <input
     :placeholder="props.placeholder"
     :disabled="props.disabled"
-    :class="['vv-input', props.size]"
-  />
+    :class="['vv-input', props.size]" />
 </template>
 
 <script setup lang="ts">
-import { withDefaults } from "vue";
-import type { InputProps } from "./input";
+import { withDefaults } from "vue"
+import type { InputProps } from "./input"
+
+defineOptions({
+  name: "VvInput"
+})
 
 const props = withDefaults(defineProps<InputProps>(), {
   size: "medium",
   disabled: false,
-  placeholder: "",
-});
+  placeholder: ""
+})
 </script>
 
 <style lang="css" scoped>

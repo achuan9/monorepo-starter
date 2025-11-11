@@ -1,30 +1,32 @@
 <template>
   <button
-     class="vv-button"
+    class="vv-button"
     :disabled="props.disabled"
     :class="props.type"
     :size="props.size"
-    @click="handleClick"
-  >
+    @click="handleClick">
     <slot />
   </button>
 </template>
 
 <script setup lang="ts">
-import { withDefaults } from "vue";
-import type { ButtonProps, ButtonEmits } from "./button";
+import type { ButtonProps, ButtonEmits } from "./button"
+
+defineOptions({
+  name: "VvButton"
+})
 
 const props = withDefaults(defineProps<ButtonProps>(), {
   type: "primary",
   size: "medium",
-  disabled: false,
-});
+  disabled: false
+})
 
-const emit = defineEmits<ButtonEmits>();
+const emit = defineEmits<ButtonEmits>()
 
 const handleClick = () => {
-  emit("click");
-};
+  emit("click")
+}
 </script>
 
 <style lang="css" scoped>

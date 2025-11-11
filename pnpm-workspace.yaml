@@ -1,7 +1,8 @@
 packages:
-  - 'apps/*'
-  - 'packages/*'
-  - 'packages/plugins/*'
-  - 'packages/utils/*'
-  - 'packages/configs/*'
-  - 'packages/internal/*'
+  - "apps/*"
+  - "packages/*"
+  - "packages/plugins/*"
+  - "packages/vite-plugins/*"
+  - "packages/utils/*"
+  - "packages/configs/*"
+  - "packages/internal/*"

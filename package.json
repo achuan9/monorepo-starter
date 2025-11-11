@@ -33,7 +33,7 @@
     "changeset": "changeset",
     "changeset:version": "changeset version",
     "changeset:publish": "changeset publish",
-    "prepare": "husky"
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.7",
@@ -57,6 +57,8 @@
     "@monorepo-starter/ui": "workspace:*",
     "@monorepo-starter/prettier-config": "workspace:*",
     "@monorepo-starter/eslint-config": "workspace:*",
-    "@monorepo-starter/typescript-config": "workspace:*"
+    "@monorepo-starter/typescript-config": "workspace:*",
+    "@monorepo-starter/vite-plugin-xxx": "workspace:*",
+    "@monorepo-starter/shared-utils": "workspace:*"
   }
 }

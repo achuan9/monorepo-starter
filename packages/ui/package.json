@@ -18,64 +18,46 @@
     "url": "https://issues.monorepo-starter.com"
   },
   "type": "module",
-  "main": "lib/index.js",
-  "module": "lib/index.es.js",
-  "types": "lib/index.d.ts",
-  "styles": "lib/index.css",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "styles": "dist/index.css",
   "files": [
-    "lib/",
-    "lib/index.css",
+    "dist/",
+    "dist/index.css",
     "CHANGELOG.md"
   ],
   "exports": {
     ".": {
-      "types": "./lib/index.d.ts",
-      "default": "./lib/index.es.js"
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.es.js"
     },
     "./styles": {
-      "default": "./lib/index.css"
+      "default": "./dist/index.css"
     }
   },
   "scripts": {
-    "generate:exports": "npx tsx scripts/generate-exports.ts --watch-path scripts/export-map.ts",
-    "watch": "pnpm build:lib --watch",
     "dev": "vite build --watch",
-    "dev:typecheck": "vue-tsc --noEmit --skipLibCheck --project ./tsconfig.dev.json",
-    "build": "rimraf lib dist && pnpm build:lib && concurrently \"pnpm build:dist\" \"pnpm build:types:lib\" -n \"dist,types\" --kill-others-on-fail -gr && pnpm build:types:bundle",
-    "build:dist": "rollup --config build/rollup.config.js",
-    "build:lib": "set NODE_ENV=lib && babel src --out-dir lib --source-maps --extensions \".ts\",\".tsx\",\".snap\" --copy-files --no-copy-ignored --out-file-extension .js",
-    "build:types": "pnpm build:types:lib && pnpm build:types:bundle",
-    "build:types:lib": "tsgo --pretty --emitDeclarationOnly -p tsconfig.dist.json && node build/transform-types.js",
-    "build:types:bundle": "rollup --config build/rollup.types.config.js",
-    "tsc": "tsc",
+    "build": "rimraf dist && vite build",
     "test": "vitest",
-    "test:unit": "vitest --project unit",
-    "test:browser": "vitest --project browser",
-    "test:open": "TEST_BAIL=1 vitest --project browser -w",
-    "test:coverage": "pnpm test --coverage",
-    "test:percy": "percy exec -- vitest --project browser",
-    "test:all": "concurrently -gr 'vitest --project unit' 'vitest --project browser --shard=1/5' 'vitest --project browser --shard=2/5' 'vitest --project browser --shard=3/5' 'vitest --project browser --shard=4/5' 'vitest --project browser --shard=5/5'",
-    "lint": "concurrently -n \"tsc,eslint\" --kill-others-on-fail \"tsgo -p tsconfig.checks.json --noEmit --pretty\" \"eslint src -f codeframe --max-warnings 0\"",
-    "lint:fix": "concurrently -n \"tsc,eslint\" \"tsgo -p tsconfig.checks.json --noEmit --pretty\" \"eslint --fix src\""
+    "test:coverage": "vitest --coverage",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix"
   },
   "devDependencies": {
-    "@percy/cli": "^1.30.10",
-    "@percy/sdk-utils": "^1.30.10",
+    "@monorepo-starter/eslint-config": "workspace:*",
+    "@monorepo-starter/typescript-config": "workspace:*",
     "@vitejs/plugin-vue": "^6.0.1",
     "@vitest/coverage-istanbul": "^3.2.4",
+    "@vue/test-utils": "^2.4.6",
+    "jsdom": "^25.0.1",
     "postcss": "^8.5.3",
-    "ts-node": "^10.9.2",
     "vite-plugin-dts": "^4.5.4",
+    "vitest": "^3.2.4",
     "vue": "^3.5.23"
   },
   "peerDependencies": {
-    "typescript": "^5.9.3",
     "vite": "^7.2.2"
-  },
-  "peerDependenciesMeta": {
-    "typescript": {
-      "optional": true
-    }
   },
   "publishConfig": {
     "access": "public"

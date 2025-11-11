@@ -12,6 +12,8 @@
     "@monorepo-starter/prettier-config": "workspace:*",
     "@monorepo-starter/eslint-config": "workspace:*",
     "@monorepo-starter/typescript-config": "workspace:*",
+    "@monorepo-starter/vite-plugin-xxx": "workspace:*",
+    "@monorepo-starter/shared-utils": "workspace:*",
     "vue": "^3.5.22"
   },
   "devDependencies": {
